@@ -53,7 +53,7 @@
 
         // Carbon storage of trees in Warren Wilson College.
         var featureLayer = new FeatureLayer({
-          url: "https://geodesy.noaa.gov/storm_archive/storms/tilesa/services/tileserver.php/wmts"
+          url: "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/Landscape_Trees/FeatureServer/0"
         });
 
         map.add(featureLayer);
