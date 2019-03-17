@@ -1,37 +1,69 @@
-## Welcome to GitHub Pages
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>Intro to FeatureLayer - 4.10</title>
 
-You can use the [editor on GitHub](https://github.com/dlope12/Project/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+  <link rel="stylesheet" href="https://js.arcgis.com/4.10/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.10/"></script>
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
 
-### Markdown
+  <script>
+    require([
+        "esri/Map",
+        "esri/views/MapView",
+        "esri/layers/FeatureLayer"
+      ],
+      function(
+        Map, MapView,
+        FeatureLayer
+      ) {
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+        var map = new Map({
+          basemap: "hybrid"
+        });
 
-```markdown
-Syntax highlighted code block
+        var view = new MapView({
+          container: "viewDiv",
+          map: map,
 
-# Header 1
-## Header 2
-### Header 3
+          extent: { // autocasts as new Extent()
+            xmin: -9177811,
+            ymin: 4247000,
+            xmax: -9176791,
+            ymax: 4247784,
+            spatialReference: 102100
+          }
+        });
 
-- Bulleted
-- List
+        /********************
+         * Add feature layer
+         ********************/
 
-1. Numbered
-2. List
+        // Carbon storage of trees in Warren Wilson College.
+        var featureLayer = new FeatureLayer({
+          url: "https://geodesy.noaa.gov/storm_archive/storms/tilesa/services/tileserver.php/wmts"
+        });
 
-**Bold** and _Italic_ and `Code` text
+        map.add(featureLayer);
 
-[Link](url) and ![Image](src)
-```
+      });
+  </script>
+</head>
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+<body>
+  <div id="viewDiv"></div>
+</body>
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/dlope12/Project/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+</html>
